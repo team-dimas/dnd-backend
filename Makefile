@@ -38,3 +38,7 @@ build: test
 
 deps:
 	$(GOMOD) tidy
+
+TAG         ?= dev
+docker:
+	docker build -t $(DOCKER_REPO)dnd-backend:$(TAG) .
