@@ -1,3 +1,5 @@
+include .env
+
 TARGET_DIR = $(CURDIR)/target
 BUILD_DIR  = $(TARGET_DIR)/build
 PKG        = $(shell $(GO) list -m)
@@ -39,6 +41,15 @@ build: test
 deps:
 	$(GOMOD) tidy
 
-TAG         ?= dev
+TAG ?= dev
 docker:
 	docker build -t $(DOCKER_REPO)dnd-backend:$(TAG) .
+
+# For development only.
+docker-run-dev: docker
+	docker run \
+		-p=$(TARGET_PORT):$(TARGET_PORT) \
+		--env-file=.env \
+		--name=dnd-backend \
+		--rm \
+		$(DOCKER_REPO)dnd-backend:$(TAG)
