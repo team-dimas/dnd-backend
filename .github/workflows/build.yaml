@@ -25,5 +25,5 @@ jobs:
           echo ${{ secrets.GITHUB_TOKEN }} | docker login ${DOCKER_REPO} -u ${{ secrets.user }} --password-stdin
           make docker-push
         env:
-          tag: ${GITHUB_SHA}
+          TAG: ${GITHUB_SHA}
 
