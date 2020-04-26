@@ -45,6 +45,9 @@ TAG ?= dev
 docker:
 	docker build -t $(DOCKER_REPO)dnd-backend:$(TAG) .
 
+docker-push:
+	docker push $(DOCKER_REPO)dnd-backend:$(TAG)
+
 # For development only.
 docker-run-dev: docker
 	docker run \
