@@ -15,7 +15,6 @@ GOTEST = $(GO) test -v \
 	-covermode=atomic \
 	-coverpkg=$(ALL) \
 	-short \
-	-race \
 	-coverprofile=$(TARGET_DIR)/coverage.out
 GOVET = $(GO) vet
 
