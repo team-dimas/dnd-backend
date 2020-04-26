@@ -5,6 +5,8 @@ BUILD_DIR  = $(TARGET_DIR)/build
 PKG        = $(shell $(GO) list -m)
 ALL        = $(PKG)/...
 
+DOCKER_NAME = team-dimas/dnd-backend/dnd
+
 GO      = go
 GOBUILD = $(GO) build -ldflags="-s -w"
 GOCLEAN = $(GO) clean
@@ -43,10 +45,10 @@ deps:
 
 TAG ?= dev
 docker:
-	docker build -t $(DOCKER_REPO)dnd-backend:$(TAG) .
+	docker build -t $(DOCKER_REPO)$(DOCKER_NAME):$(TAG) .
 
 docker-push:
-	docker push $(DOCKER_REPO)dnd-backend:$(TAG)
+	docker push $(DOCKER_REPO)$(DOCKER_NAME):$(TAG)
 
 # For development only.
 docker-run-dev: docker
@@ -55,4 +57,4 @@ docker-run-dev: docker
 		--env-file=.env \
 		--name=dnd-backend \
 		--rm \
-		$(DOCKER_REPO)dnd-backend:$(TAG)
+		$(DOCKER_REPO)$(DOCKER_NAME):$(TAG)
