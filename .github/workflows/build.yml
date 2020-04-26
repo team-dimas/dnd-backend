@@ -1,7 +1,7 @@
 name: build
 
 env:
-  DOCKER_REPO: docker.pkg.github.com
+  DOCKER_REPO: docker.pkg.github.com/
 
 on:
   push:
