@@ -2,6 +2,7 @@ name: build
 
 env:
   DOCKER_REPO: docker.pkg.github.com/
+  TAG: ${GITHUB_SHA}
 
 on:
   push:
@@ -24,6 +25,3 @@ jobs:
         run: |
           echo ${{ secrets.GITHUB_TOKEN }} | docker login ${DOCKER_REPO} -u ${{ secrets.user }} --password-stdin
           make docker-push
-        env:
-          TAG: ${GITHUB_SHA}
-
